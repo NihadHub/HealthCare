@@ -1,0 +1,26 @@
+package org.healthcare.mapper;
+
+import org.healthcare.dto.RendezvousDTO;
+import org.healthcare.entity.RendezVous;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+
+@Mapper(componentModel = "spring")
+public interface RendezVousMapper {
+   @Mapping(source= "patient.id", target="patientId")
+    @Mapping(source = "medecin.id", target="medecinId")
+    @Mapping(source = "patient.nom", target="patientNom")
+    @Mapping(source = "medecin.nom", target = "medecinNom")
+    RendezvousDTO toDTO(RendezVous rendezVous);
+
+   @Mapping(target="patient", ignore=true)
+    @Mapping(target = "medecin", ignore = true)
+    RendezVous toEntity(RendezvousDTO dto);
+
+   @Mapping(target = "patient", ignore = true)
+    @Mapping(target = "medecin", ignore = true)
+    void updateEntityFromDTO(RendezvousDTO dto, @MappingTarget RendezVous entity);
+
+}
+
