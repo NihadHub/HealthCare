@@ -28,6 +28,6 @@ public class RendezvousDTO {
     @NotNull(message = "L'ID du medecin est obligatoire")
     private  Long medecinId;
 
-    private String nomPatient;
-    private String nomMedecin;
+    private String patientNom;
+    private String medecinNom;
 }

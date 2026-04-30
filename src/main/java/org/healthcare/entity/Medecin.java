@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @Getter
 @Setter @AllArgsConstructor @NoArgsConstructor
 @Entity
-@Table(name="medecins")
 public class Medecin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

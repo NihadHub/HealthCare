@@ -11,14 +11,13 @@ import java.time.LocalDateTime;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
-@Table(name = "rendez_vous")
 public class RendezVous {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private  LocalDateTime dateRendezvous;
+    private  LocalDateTime dateRendezVous;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
