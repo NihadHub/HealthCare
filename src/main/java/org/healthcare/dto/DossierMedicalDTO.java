@@ -16,7 +16,7 @@ public class DossierMedicalDTO {
     private LocalDateTime dateCreation;
 
     @NotNull(message = "L'Id du patient est obligatoire ")
-    private Long idPatient;
-    private String nomPatient;
+    private Long patientId;
+    private String patientNom;
 
 }

@@ -8,14 +8,13 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface DossierMedicalMapper {
-    @Mapping(source = "patient.id", target = "idPatient")
-    @Mapping(source = "patient.nom", target = "nomPatient")
     DossierMedicalDTO toDTO(DossierMedical dossierMedical);
 
     @Mapping(target = "patient", ignore=true)
+    @Mapping(source = "patientId" , target = "patient.id")
     DossierMedical toEntity(DossierMedicalDTO dossierMedicalDTO);
     @Mapping(target = "patient", ignore = true)
+    @Mapping(source = "patientId" , target = "patient.id")
     void updateEntityFromDTO(DossierMedicalDTO dto, @MappingTarget DossierMedical entity);
-
 
 }

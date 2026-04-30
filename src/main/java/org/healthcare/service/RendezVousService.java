@@ -35,10 +35,10 @@ public class RendezVousService {
         return  rendezVousMapper.toDTO(rendezVous1);
     }
 
-    public void annulerRendezVous(Long id){
+    public RendezvousDTO annulerRendezVous(Long id){
         RendezVous rendezVous= rendezVousRepository.findById(id).orElseThrow(() -> new RuntimeException("Rendez vous non trouvé "));
         rendezVous.setStatutRendezVous(StatutRendezVous.ANNULER);
-        rendezVousRepository.save(rendezVous);
+        return rendezVousMapper.toDTO(rendezVousRepository.save(rendezVous));
     }
 
     public RendezvousDTO modifierRendezVous(Long id, RendezvousDTO rendezvousDTO){
@@ -55,12 +55,12 @@ public class RendezVousService {
 
     @Transactional
     public List<RendezvousDTO> getRendezVousByPatientId(Long id){
-        return rendezVousRepository.findByPatient(id).stream().map(rendezVousMapper:: toDTO).toList();
+        return rendezVousRepository.findByPatientId(id).stream().map(rendezVousMapper::toDTO).toList();
 
     }
 
     @Transactional
     public List<RendezvousDTO> getRendezVousByMedecinId(Long id){
-        return rendezVousRepository.findByMedecin(id).stream().map(rendezVousMapper :: toDTO).toList();
+        return rendezVousRepository.findByMedecinId(id).stream().map(rendezVousMapper::toDTO).toList();
     }
 }

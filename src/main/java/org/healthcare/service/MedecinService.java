@@ -38,4 +38,8 @@ public class MedecinService {
         List<Medecin> medecins = medecinRepository.findAll();
         return medecins.stream().map(medecinMapper:: toDTO).toList();
     }
+
+    public MedecinDTO findById(Long id){
+        return medecinMapper.toDTO(medecinRepository.findById(id).orElse(null));
+    }
 }
