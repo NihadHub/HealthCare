@@ -114,18 +114,18 @@ class RendezVousServiceTest {
     @Test
     void getRendezVousByPatientId() {
         RendezvousDTO rendezvousDTO = sampleRendezVous();
-        rendezVousService.creerRendezVous(rendezvousDTO);
-        List<RendezvousDTO> list = rendezVousService.getRendezVousByPatientId(rendezvousDTO.getPatientId());
+        RendezvousDTO created = rendezVousService.creerRendezVous(rendezvousDTO);
+        List<RendezvousDTO> list = rendezVousService.getRendezVousByPatientId(created.getPatientId());
         assertFalse(list.isEmpty());
-        assertEquals(rendezvousDTO.getPatientId(), list.get(0).getPatientId());
+        assertEquals(created.getPatientId(), list.get(0).getPatientId());
     }
 
     @Test
     void getRendezVousByMedecinId() {
         RendezvousDTO rendezvousDTO = sampleRendezVous();
-        rendezVousService.creerRendezVous(rendezvousDTO);
-        List<RendezvousDTO> list = rendezVousService.getRendezVousByMedecinId(rendezvousDTO.getMedecinId());
+        RendezvousDTO created = rendezVousService.creerRendezVous(rendezvousDTO);
+        List<RendezvousDTO> list = rendezVousService.getRendezVousByMedecinId(created.getMedecinId());
         assertFalse(list.isEmpty());
-        assertEquals(rendezvousDTO.getMedecinId(), list.get(0).getMedecinId());
+        assertEquals(created.getMedecinId(), list.get(0).getMedecinId());
     }
 }
