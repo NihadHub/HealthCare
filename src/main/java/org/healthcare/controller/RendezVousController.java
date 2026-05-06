@@ -53,4 +53,5 @@ public class RendezVousController {
     List<RendezvousDTO> rendezvousDTOS = rendezVousService.getRendezVousByMedecinId(medecinId);
     return ResponseEntity.ok(rendezvousDTOS);
 }
+
 }

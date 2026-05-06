@@ -17,6 +17,6 @@ public class DossierMedicalDTO {
 
     @NotNull(message = "L'Id du patient est obligatoire ")
     private Long patientId;
-    private String patientNom;
+
 
 }

@@ -12,13 +12,12 @@ public interface RendezVousMapper {
     @Mapping(source = "medecin.id", target = "medecinId")
     RendezvousDTO toDTO(RendezVous rendezVous);
 
-   @Mapping(target="patient", ignore=true)
+    @Mapping(target="patient", ignore=true)
     @Mapping(target = "medecin", ignore = true)
     RendezVous toEntity(RendezvousDTO dto);
 
-   @Mapping(target = "patient", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "patient", ignore = true)
     @Mapping(target = "medecin", ignore = true)
     void updateEntityFromDTO(RendezvousDTO dto, @MappingTarget RendezVous entity);
-
 }
-

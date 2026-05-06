@@ -1,6 +1,7 @@
 package org.healthcare.service;
 
 import lombok.RequiredArgsConstructor;
+import org.healthcare.dto.DossierMedicalDTO;
 import org.healthcare.dto.RendezvousDTO;
 import org.healthcare.entity.Medecin;
 import org.healthcare.entity.Patient;
@@ -13,6 +14,7 @@ import org.healthcare.repository.RendezVousRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,4 +65,7 @@ public class RendezVousService {
     public List<RendezvousDTO> getRendezVousByMedecinId(Long id){
         return rendezVousRepository.findByMedecinId(id).stream().map(rendezVousMapper::toDTO).toList();
     }
+
+
+
 }

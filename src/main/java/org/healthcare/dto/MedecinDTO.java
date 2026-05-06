@@ -24,4 +24,5 @@ public class MedecinDTO {
 
     @NotBlank(message = "Le téléphone est obligatoire")
     private String telephone;
+
 }
