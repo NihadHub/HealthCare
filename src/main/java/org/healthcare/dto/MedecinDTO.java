@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class MedecinDTO {
 
-    private  Long Id;
+    private  Long id;
 
     @NotBlank(message = "Le nom est obligatoire")
     private String nom;

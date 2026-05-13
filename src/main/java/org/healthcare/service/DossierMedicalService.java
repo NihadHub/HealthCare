@@ -2,7 +2,9 @@ package org.healthcare.service;
 
 import lombok.RequiredArgsConstructor;
 import org.healthcare.dto.DossierMedicalDTO;
+import org.healthcare.dto.PatientDTO;
 import org.healthcare.entity.DossierMedical;
+import org.healthcare.entity.Patient;
 import org.healthcare.mapper.DossierMedicalMapper;
 import org.healthcare.repository.DossierMedicalRepository;
 import org.healthcare.repository.PatientRepository;
@@ -19,8 +21,11 @@ public class DossierMedicalService {
     private final PatientRepository patientRepository;
 
     public DossierMedicalDTO creerDossier(DossierMedicalDTO dossierMedicalDTO){
+        patientRepository.findById(dossierMedicalDTO.getPatientId()).orElseThrow(() -> new RuntimeException("Patient non trouve"));
         DossierMedical dossierMedical = dossierMedicalRepository.save(dossierMedicalMapper.toEntity(dossierMedicalDTO));
-        return dossierMedicalMapper.toDTO(dossierMedical);
+        DossierMedicalDTO medicalDTO = dossierMedicalMapper.toDTO(dossierMedical);
+        medicalDTO.setPatientId(dossierMedical.getPatient().getId());
+        return medicalDTO;
     }
 
     public DossierMedicalDTO ajouterDiagnostic(Long id, String diagnostic){

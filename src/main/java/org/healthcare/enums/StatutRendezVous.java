@@ -1,9 +1,9 @@
 package org.healthcare.enums;
 
 public  enum StatutRendezVous {
-    ANNULER,
+    PROGRAMME,
     CONFIRME,
     TERMINE,
-    PROGRAMME
+    ANNULER
 }
 

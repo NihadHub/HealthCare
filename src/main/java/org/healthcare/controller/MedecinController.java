@@ -21,7 +21,7 @@ public class MedecinController {
 @PostMapping
     public ResponseEntity<MedecinDTO> addMedecin(@Valid @RequestBody MedecinDTO medecinDTO){
     MedecinDTO created= medecinService.ajouterMedecin(medecinDTO);
-    return ResponseEntity.status(HttpStatus.CREATED).body(medecinDTO);
+    return ResponseEntity.status(HttpStatus.CREATED).body(created);
 }
 
 @PutMapping ("/{id}")
