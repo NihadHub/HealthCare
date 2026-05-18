@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.healthcare.enums.Role;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Entity
@@ -21,6 +22,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
 

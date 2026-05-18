@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.healthcare.enums.Role;
 
 @Getter @Setter
 public class RegisterRequest {
@@ -16,4 +17,6 @@ public class RegisterRequest {
 
     @NotBlank @Size(min=10)
     private String password;
+
+    private Role role;
 }

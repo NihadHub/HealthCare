@@ -5,9 +5,11 @@ import org.healthcare.dto.PatientDTO;
 import org.healthcare.entity.Patient;
 import org.healthcare.mapper.PatientMapper;
 import org.healthcare.repository.PatientRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -40,10 +42,14 @@ public class PatientService {
         return patientMapper.toDTO(patient);
     }
 
-    @Transactional
-    public List<PatientDTO> getAll(){
-        List<Patient> patients= patientRepository.findAll();
-        return patients.stream().map(patientMapper::toDTO).toList();
+    public Page<Patient> getAll(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        return patientRepository.findAll(pageable);
+    }
+
+    public Page<Patient> getPatientByName(int page, int size, String nom){
+        Pageable pageable= PageRequest.of(page, size, Sort.by(nom).ascending());
+        return patientRepository.findByNomContainingIgnoreCase(nom, pageable);
     }
 
 }

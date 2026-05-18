@@ -5,6 +5,7 @@ import org.healthcare.dto.AuthResponse;
 import org.healthcare.dto.LoginRequest;
 import org.healthcare.dto.RegisterRequest;
 import org.healthcare.entity.User;
+import org.healthcare.enums.Role;
 import org.healthcare.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,10 +32,11 @@ public class AuthService {
         user.setUsername(req.getUsername());
         user.setEmail(req.getEmail());
         user.setPassword(passwordEncoder.encode(req.getPassword()));
+        user.setRole(Role.ROLE_PATIENT);
         userRepository.save(user);
 
-        String token = jwtService.generateToken(user.getUsername());
-        return new AuthResponse(token);
+        String token = jwtService.generateToken(user.getUsername(), user.getRole().name());
+        return new AuthResponse(token, user.getRole().name());
     }
 
     public AuthResponse login(LoginRequest req){
@@ -42,8 +44,8 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(req.getUsername(),req.getPassword())
         );
         User user = userRepository.findByUsername(req.getUsername()).orElseThrow(()-> new UsernameNotFoundException("utilisateur introuvable"));
-        String token = jwtService.generateToken(user.getUsername());
-        return new AuthResponse(token);
+        String token = jwtService.generateToken(user.getUsername(), user.getRole().name());
+        return new AuthResponse(token, user.getRole().name());
     }
 
 

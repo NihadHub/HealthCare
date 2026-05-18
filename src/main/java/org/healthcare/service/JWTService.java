@@ -31,9 +31,10 @@ public class JWTService {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    public String generateToken(String username) {
+    public String generateToken(String username, String role) {
         return Jwts.builder()
                 .subject(username)
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + experation))
                 .signWith(getSigningKey())
@@ -52,7 +53,9 @@ public class JWTService {
           Claims claims= parseClaims(token);
           return claimsResolver.apply(claims);
     }
-
+    public String extractRole(String token) {
+          return extractClaim(token, claims -> claims.get("role", String.class));
+    }
     private Claims parseClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getSigningKey())
@@ -75,4 +78,6 @@ public class JWTService {
               return true;
           }
     }
+
+
 }
